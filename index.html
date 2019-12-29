@@ -1,0 +1,24 @@
+<html>
+<head>
+<meta charset="UTF-8">
+
+<link rel="stylesheet" type="text/css" href="./src/style.css">
+<link href="https://fonts.googleapis.com/css?family=Fira+Code:500&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/@coreui/icons@1.0.0/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div id="menu-top" class="menu"></div>
+<div id="menu-left" class="menu"></div>
+
+<canvas id="asciiCanvas"></canvas>
+<div id="render-output"></div>
+
+<textarea id="clipArea"></textarea>
+
+<script type="module" src="./app.mjs"></script>
+<script nomodule>
+document.body.innerHTML = "<h1>Browser not supported :-(</h2>"
+</script>
+</body>
+</html>

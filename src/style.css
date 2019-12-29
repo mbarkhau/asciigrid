@@ -1,0 +1,99 @@
+body {
+    user-select: none;
+    color: white;
+    background: black;
+    overflow: hidden;
+    width: 100%;
+}
+html, body, div {
+    margin: 0;
+    padding: 0;
+}
+#asciiCanvas {
+    overflow: hidden;
+}
+#clipArea {
+    position: absolute;
+    opacity: .01;
+    height: 0;
+    overflow: hidden;
+}
+.menu {
+    position: absolute;
+    background: black;
+    font-size: 24px;
+}
+.menu > span:hover {
+    background: #444;
+    cursor: pointer;
+}
+.menu > span.enabled {
+    background: #555;
+}
+.menu > span.disabled {
+    background: black;
+    color: #777;
+    cursor: normal;
+}
+.menu span {
+    display: inline-block;
+    padding: 12px 8px;
+    color: white;
+}
+#menu-top span.spacer {
+    background: black;
+    width: 32px;
+}
+#menu-left span.spacer {
+    background: black;
+    height: 32px;
+}
+
+#menu-top {
+    top: 0;
+    padding: 12px 24px;
+}
+#menu-left {
+    top: 60px;
+    left: 0;
+    max-width: 48px;
+    padding: 32px 0 0 24px;
+}
+#render-output {
+    position: absolute;
+}
+
+@media (max-aspect-ratio: 1/1) {
+    #menu-top {
+        right: 0;
+    }
+    #render-output {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        border-top: 1px solid #888;
+    }
+}
+@media (min-aspect-ratio: 1/1) {
+    #menu-top {
+        right: 50%;
+    }
+    #render-output {
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100%;
+        border-left: 1px solid #888;
+    }
+}
+
+#render-output svg {
+    margin: 0 auto;
+    filter: grayscale(1) invert(1);
+}
+h1 {
+    display: block;
+    margin: 3em auto;
+    width: 13em;
+}
