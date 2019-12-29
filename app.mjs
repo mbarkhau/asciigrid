@@ -381,14 +381,22 @@ function getCellExtreem(state, select, dim, dir) {
 }
 
 function moveToEnd(dirX, dirY) {
+    var cellVals = Object.values(state.cells)
     var sel = lastSelect(state)
+
+    if (cellVals.length == 0) {
+        sel.w = 1
+        sel.h = 1
+        sel.x = 0
+        sel.y = 0
+        return
+    }
     if (sel.w != 1 || sel.h != 1) {return}
 
     var minVals = {x: 11, y: 11}
     var maxVals = {x: 0, y: 0}
     var xVals = []
     var yVals = []
-    var cellVals = Object.values(state.cells)
     for (var i = 0; i < cellVals.length; i++) {
         var cv = cellVals[i]
         if (cv.z != state.cursorZ) {continue}
