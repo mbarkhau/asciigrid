@@ -1,9 +1,11 @@
 # AsciiGrid
 
-AsciiGrid is an editor for ASCII based diagrams, rendered using Svgbob.
+AsciiGrid is an interactive editor for ASCII based diagrams, rendered using Svgbob.
+It is available at [mbarkhau.keybase.pub/asciigrid/](https://mbarkhau.keybase.pub/asciigrid/).
 
 
 [![MIT License][license_img]][license_ref]
+
 
 |               Name                  |    role           |  since  | until |
 |-------------------------------------|-------------------|---------|-------|
