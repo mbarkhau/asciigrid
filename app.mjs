@@ -118,17 +118,24 @@ function updateRender() {
     bobText = unicode.removeFauxSpaces(bobText)
     console.log("fetch svg start, sending", bobText.length, "bytes")
 
-    fetch("https://mbarkhau.pythonanywhere.com/bob2svg", {
-        'method'     : 'POST',
+    const url = "https://mbarkhau.pythonanywhere.com/bob2svg"
+    // fetch(url, {
+    //     'method'     : 'POST',
+    //     'mode'       : 'cors',
+    //     'credentials': 'omit',
+    //     'body'       : bobText
+    // })
+    var imgURL = url + "?d=" + encodeURIComponent(bobText)
+    fetch(imgURL, {
+        'method'     : 'GET',
         'mode'       : 'cors',
         'credentials': 'omit',
-        'body'       : bobText
-    }).then((resp) => {
+    })
+    .then((resp) => {
         return resp.text()
     }).then((svgText) => {
         console.log("fetch svg done, got", svgText.length, "bytes")
-        // updateSVG(svgText)
-        outputDiv.innerHTML = svgText
+        outputDiv.innerHTML = `<a href="${imgURL}">${svgText}</a>`
         var outW = outputDiv.clientWidth
         var outH = outputDiv.clientHeight
         var outAspect = outW / outH
