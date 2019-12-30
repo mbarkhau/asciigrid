@@ -12,9 +12,6 @@ Features:
  - Keyboard Shortcuts (Ctrl-A, Home, End, ...)
 
 
-[![MIT License][license_img]][license_ref]
-
-
 |               Name                  |    role           |  since  | until |
 |-------------------------------------|-------------------|---------|-------|
 | Manuel Barkhau (mbarkhau@gmail.com) | author/maintainer | 2019-12 | -     |
@@ -40,7 +37,3 @@ Software used:
  - [Svgbob](https://github.com/ivanceras/svgbob) to render ASCII -> SVG
  - [Pythonanywhere](https://www.pythonanywhere.com/) for server side rendering.
  - [coreui.io](https://coreui.io/icons/) for icons
-
-
-[license_img]: https://img.shields.io/badge/License-MIT-blue.svg
-[license_ref]: https://gitlab.com/mbarkhau/litprog/blob/master/LICENSE
