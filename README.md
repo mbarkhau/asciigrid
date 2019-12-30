@@ -1,6 +1,6 @@
 # AsciiGrid
 
-AsciiGrid is WYSIWYG ASCII/[Svgbob](https://github.com/ivanceras/svgbob) diagram editor.
+AsciiGrid is WYSIWYG editor for ASCII/[Svgbob](https://github.com/ivanceras/svgbob) diagrams.
 
 AsciiGrid is available at [mbarkhau.keybase.pub/asciigrid/](https://mbarkhau.keybase.pub/asciigrid/).
 
