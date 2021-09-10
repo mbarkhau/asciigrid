@@ -118,24 +118,31 @@ function updateRender() {
     bobText = unicode.removeFauxSpaces(bobText)
     console.log("fetch svg start, sending", bobText.length, "bytes")
 
-    const url = "https://mbarkhau.pythonanywhere.com/bob2svg"
-    // fetch(url, {
-    //     'method'     : 'POST',
-    //     'mode'       : 'cors',
-    //     'credentials': 'omit',
-    //     'body'       : bobText
-    // })
-    var imgURL = url + "?d=" + encodeURIComponent(bobText)
-    fetch(imgURL, {
-        'method'     : 'GET',
+    let url = "https://mbarkhau.pythonanywhere.com/bob2svg"
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const backendUrl = urlParams.get('backend');
+    if (backendUrl) {
+        url = backendUrl + "/bob2svg"
+    }
+    fetch(url, {
+        'method'     : 'POST',
         'mode'       : 'cors',
         'credentials': 'omit',
+        'body'       : bobText
     })
+    // var imgURL = url + "?d=" + encodeURIComponent(bobText)
+    // fetch(imgURL, {
+    //     'method'     : 'GET',
+    //     'mode'       : 'cors',
+    //     'credentials': 'omit',
+    // })
     .then((resp) => {
         return resp.text()
     }).then((svgText) => {
         console.log("fetch svg done, got", svgText.length, "bytes")
-        outputDiv.innerHTML = `<a href="${imgURL}">${svgText}</a>`
+        // outputDiv.innerHTML = `<a href="${imgURL}">${svgText}</a>`
+        outputDiv.innerHTML = svgText
         var outW = outputDiv.clientWidth
         var outH = outputDiv.clientHeight
         var outAspect = outW / outH
@@ -167,8 +174,9 @@ function updateRender() {
 
 
         state.lastRenderComplete = renderRequest
-    }).catch(() => {
-        outputDiv.innerHTML = "Error Rendering SVG"
+    }).catch((err) => {
+        console.log(err)
+        outputDiv.innerHTML = "Error Rendering SVG: " + err
         state.lastRenderComplete = renderRequest
     })
 }

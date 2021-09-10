@@ -1,3 +1,4 @@
+import os
 import functools
 import urllib.parse
 
@@ -6,20 +7,25 @@ import flask
 from markdown_svgbob.wrapper import text2svg
 from markdown_svgbob.extension import svg2html
 
-app = flask.Flask(__name__)
+
+IS_DEBUG = os.getenv('ASCIIGRID_DEBUG', "0") == "1"
+
+
+routes = flask.Blueprint('asciigrid', __name__)
 
 text2svg_cached = functools.lru_cache(maxsize=1000)(text2svg)
 
 
-@app.route("/bob2svg", methods=['GET', 'POST', 'OPTIONS'])
+@routes.route("/bob2svg", methods=['GET', 'POST', 'OPTIONS'])
 def bob2svg():
     headers = {
         'Access-Control-Allow-Methods': "GET, POST, OPTIONS",
         'Access-Control-Max-Age': 86400,
     }
 
-    if flask.request.headers.get('Origin') == "http://localhost:8000":
-        origin = "http://localhost:8000"
+    req_origin = flask.request.headers.get('Origin', "")
+    if req_origin.startswith("http://localhost"):
+        origin = req_origin
     else:
         origin = "https://mbarkhau.keybase.pub"
 
@@ -50,13 +56,31 @@ def bob2svg():
     return flask.Response(svg_data, headers=headers)
 
 
-@app.route('/')
-def hello_world():
+debug_routes = flask.Blueprint('asciigrid_debug', __name__)
+
+
+@debug_routes.route('/headers.txt')
+def debug_headers():
     header_str = str(flask.request.headers)
     return flask.Response(
         header_str,
-        headers={
-            'Content-Type': "text/plain"
-        }
+        headers={'Content-Type': "text/plain"}
     )
+
+
+@debug_routes.route("/")
+def index():
+    print("...", flask.request.args)
+    if 'backend' in flask.request.args:
+        return flask.render_template("index.html")
+    else:
+        return flask.redirect("?backend=http://localhost:8080", code=302)
+
+
+app = flask.Flask(__name__, static_folder="", template_folder="")
+app.register_blueprint(routes)
+
+
+if IS_DEBUG:
+    app.register_blueprint(debug_routes)
 
