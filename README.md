@@ -71,8 +71,9 @@ ASCIIGRID_DEBUG=1 \
 # Docker
 
 Port mapping :
-    http://localhost:4000 -> asciigrid
-    http://localhost:4001 -> bob2svg web service
+
+- http://localhost:4000 -> asciigrid
+- http://localhost:4001 -> bob2svg web service
 
 ```shell
 $ make docker
