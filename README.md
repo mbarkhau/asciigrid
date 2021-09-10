@@ -37,3 +37,53 @@ Software used:
  - [Svgbob](https://github.com/ivanceras/svgbob) to render ASCII -> SVG
  - [Pythonanywhere](https://www.pythonanywhere.com/) for server side rendering.
  - [coreui.io](https://coreui.io/icons/) for icons
+
+
+# Development
+
+For local development on linux (maybe also macos), setup the virutal environment.
+
+```shell
+$ make venv
+~/pyenvs/asciigrid/bin/python -m pip install -r requirements.txt
+Collecting flask
+  Downloading Flask-2.0.1-py3-none-any.whl (94 kB)
+....
+Installing collected packages: six, MarkupSafe, Werkzeug, pathlib2, Markdown, Jinja2, itsdangerous, click, markdown-svgbob, flask
+Successfully installed Jinja2-3.0.1 Markdown-3.3.4 MarkupSafe-2.0.1 Werkzeug-2.0.1 click-8.0.1 flask-2.0.1 itsdangerous-2.0.1 markdown-svgbob-202107.1018 pathlib2-2.3.6 six-1.16.0
+ ```
+
+Then you can run a local development server.
+
+```shell
+$ make devhttp
+ASCIIGRID_DEBUG=1 \
+        ~/pyenvs/asciigrid/bin/flask run --port 8000 --reload
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:4000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ ```
+
+
+# Docker
+
+Port mapping :
+    http://localhost:4000 -> asciigrid
+    http://localhost:4001 -> bob2svg web service
+
+```shell
+$ make docker
+docker build -t asciigrid .
+Sending build context to Docker daemon  135.4MB
+...
+docker run -p 4000:80 -p 4001:4001 -it asciigrid
+Starting Apache httpd web server: apache2AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+.
+[2021-09-10 15:19:25 +0000] [89] [INFO] Starting gunicorn 20.1.0
+[2021-09-10 15:19:25 +0000] [89] [INFO] Listening at: http://0.0.0.0:4001 (89)
+[2021-09-10 15:19:25 +0000] [89] [INFO] Using worker: sync
+[2021-09-10 15:19:25 +0000] [90] [INFO] Booting worker with pid: 90
+```

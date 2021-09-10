@@ -19,5 +19,10 @@ venv:
 
 .PHONY: devhttp
 devhttp:
-	ASCIIGRID_DEBUG=1 \
-		~/pyenvs/asciigrid/bin/flask run --port 8000 --reload
+	ASCIIGRID_DEBUG=1 ~/pyenvs/asciigrid/bin/flask run --port 4000 --reload
+
+
+.PHONY: docker
+docker:
+	docker build -t asciigrid .
+	docker run -p 4000:80 -p 4001:4001 -it asciigrid
