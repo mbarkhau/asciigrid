@@ -70,11 +70,10 @@ def debug_headers():
 
 @debug_routes.route("/")
 def index():
-    print("...", flask.request.args)
     if 'backend' in flask.request.args:
         return flask.render_template("index.html")
     else:
-        return flask.redirect("?backend=http://localhost:8080", code=302)
+        return flask.redirect("?backend=http://localhost:4000", code=302)
 
 
 app = flask.Flask(__name__, static_folder="", template_folder="")

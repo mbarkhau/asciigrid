@@ -141,8 +141,8 @@ function updateRender() {
         return resp.text()
     }).then((svgText) => {
         console.log("fetch svg done, got", svgText.length, "bytes")
-        // outputDiv.innerHTML = `<a href="${imgURL}">${svgText}</a>`
-        outputDiv.innerHTML = svgText
+        let imgURL = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgText)));
+        outputDiv.innerHTML = `<a href="${imgURL}">${svgText}</a>`;
         var outW = outputDiv.clientWidth
         var outH = outputDiv.clientHeight
         var outAspect = outW / outH
