@@ -1,2 +1,2 @@
 flask
-markdown-svgbob
+markdown-svgbob>=202109.1020
