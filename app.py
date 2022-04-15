@@ -26,6 +26,8 @@ def bob2svg():
     req_origin = flask.request.headers.get('Origin', "")
     if req_origin.startswith("http://localhost"):
         origin = req_origin
+    elif req_origin.startswith("http://127.0.0.1"):
+        origin = req_origin
     else:
         origin = "https://mbarkhau.keybase.pub"
 
@@ -73,7 +75,8 @@ def index():
     if 'backend' in flask.request.args:
         return flask.render_template("index.html")
     else:
-        return flask.redirect("?backend=http://localhost:4000", code=302)
+        backend_url = flask.request.url.rstrip("/")
+        return flask.redirect("?backend=" + backend_url, code=302)
 
 
 app = flask.Flask(__name__, static_folder="", template_folder="")
