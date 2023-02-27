@@ -28,6 +28,8 @@ def bob2svg():
         origin = req_origin
     elif req_origin.startswith("http://127.0.0.1"):
         origin = req_origin
+    elif req_origin.startswith("https://asciigrid.litprog.dev"):
+        origin = req_origin
     else:
         origin = "https://mbarkhau.keybase.pub"
 

@@ -4,7 +4,7 @@ SHELL := /bin/bash
 
 .PHONY: deploy
 deploy:
-	cp -r ./* /run/user/1000/keybase/kbfs/public/mbarkhau/asciigrid/
+	rsync -a . mbarkhau@vserver:/var/www/html/asciigrid-litprog-dev/
 
 
 .PHONY: venv

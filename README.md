@@ -2,7 +2,7 @@
 
 AsciiGrid is WYSIWYG editor for ASCII/[Svgbob](https://github.com/ivanceras/svgbob) diagrams.
 
-AsciiGrid is available at [mbarkhau.keybase.pub/asciigrid/](https://mbarkhau.keybase.pub/asciigrid/).
+AsciiGrid is available at [https://asciigrid.litprog.dev](https://asciigrid.litprog.dev).
 
 Features:
 
