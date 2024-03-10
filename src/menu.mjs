@@ -148,18 +148,18 @@ const MENU_TOP = [
     // },
 
     {
-        'id': 'gitlab',
-        'title': "gitlab.com/mbarkhau/asciigrid",
-        'class': "cib-gitlab",
+        'id': 'github',
+        'title': "github.com/mbarkhau/asciigrid",
+        'class': "cib-github",
         'wrapNode': function (itemNode) {
             const anchorNode = document.createElement("a")
-            anchorNode.href = "https://gitlab.com/mbarkhau/asciigrid/"
+            anchorNode.href = "https://github.com/mbarkhau/asciigrid/"
             anchorNode.appendChild(itemNode)
             return anchorNode
         },
         'action': function(e) {
             if (e.button) {return}
-            window.open("https://gitlab.com/mbarkhau/asciigrid/")
+            window.open("https://github.com/mbarkhau/asciigrid/")
         },
     },
 

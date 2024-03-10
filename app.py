@@ -30,6 +30,8 @@ def bob2svg():
         origin = req_origin
     elif req_origin.startswith("https://asciigrid.litprog.dev"):
         origin = req_origin
+    elif req_origin.startswith("https://mbarkhau.github.io"):
+        origin = req_origin
     else:
         origin = "https://mbarkhau.keybase.pub"
 
